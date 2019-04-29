@@ -2,6 +2,7 @@ package sdp;
 
 import org.junit.Test;
 
+
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -14,13 +15,85 @@ public class Main {
   }
 
   private static String processGrades(Scanner scanner) {
+    double class_acc = 0;
+    double grade_acc = 0;
+    double final_gpa = 0;
+    String junk = "junk";
+    while (scanner.hasNextLine()){
 
-    return null;
+      junk = scanner.next();
+      junk = scanner.next();
+      String lettergrade = scanner.next();
+
+      if (lettergrade == "A")
+      {
+        grade_acc += 4.0;
+        class_acc++;
+      }
+      else if (lettergrade == "A-") {
+        grade_acc += 3.67;
+        class_acc++;
+      }
+      else if (lettergrade == "B+"){
+        grade_acc += 3.33;
+        class_acc++;
+      }
+      else if (lettergrade == "B"){
+        grade_acc += 3.0;
+        class_acc++;
+      }
+      else if (lettergrade == "B-"){
+        grade_acc += 2.67;
+        class_acc++;
+      }
+      else if (lettergrade == "C+"){
+        grade_acc += 2.33;
+        class_acc++;
+      }
+      else if (lettergrade == "C"){
+        grade_acc += 2.0;
+        class_acc++;
+      }
+      else if (lettergrade == "C-"){
+        grade_acc += 1.67;
+        class_acc++;
+      }
+      else if (lettergrade == "D+"){
+        grade_acc += 1.33;
+        class_acc++;
+      }
+      else if (lettergrade == "D"){
+        grade_acc += 1.0;
+        class_acc++;
+      }
+      else {
+        class_acc++;
+      }
+
+
+
+    }
+    if(class_acc == 0){
+      return "Courses: 0\nGPA: 0.00\n";
+    }
+    final_gpa = grade_acc / class_acc;
+    return "Courses: " + String.valueOf(class_acc) + "GPA: " + String.valueOf(final_gpa);
   }
+
+
 
   @Test
   public void emptyGradeListReportsZeroGpaAndNoCourses() {
     assertTotalsOfList_Are("", "Courses: 0\nGPA: 0.00\n");
+  }
+
+  @Test
+  public void scannerNext()
+  {
+    Scanner scanner = new Scanner("Cats are not dogs");
+    System.out.println(scanner.next());
+    System.out.println(scanner.next());
+
   }
 
   @Test
